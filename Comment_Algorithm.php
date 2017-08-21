@@ -1,3 +1,4 @@
+<?php
 class commentRanking{
     /**
      *  confidence sort based on http://www.evanmiller.org/how-not-to-sort-by-average-rating.html
@@ -38,3 +39,6 @@ class commentRanking{
         return $this->_confidence($upvotes, $downvotes);
     }
 }
+?>  
+
+
