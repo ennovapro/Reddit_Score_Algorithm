@@ -10,7 +10,7 @@ class commentRanking{
      * @see     http://www.evanmiller.org/how-not-to-sort-by-average-rating.html
      */
 
-    private function _confidence($upvotes = 0, $downvotes = 0) {
+    private function _confidence($upvotes, $downvotes) {
         $n = $upvotes + $downvotes;
         
         if($n === 0) {
