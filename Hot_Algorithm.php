@@ -8,19 +8,20 @@ class hotRanking{
      * @param   int $upvotes, int $downvotes
      * @return  int
      */
-    private function _score($upvotes = 0, $downvotes = 0) {
+    private function _score($upvotes, $downvotes) {
         return $upvotes - $downvotes;
     }
-    
+
     /**
      * calculates the hotness of an article
      * 
      * @access  private
      * @since   0.1
-     * @param   int $upvotes, int $downvotes, int $posted
+     * @param   int $upvotes, int $downvotes, int $datePosted
      * @return  float
+     * Notes: $datePosted should be the unix timestamp in seconds of the date that the post was posted   
      */
-    private function _hotness($upvotes = 0, $downvotes = 0, $posted = 0) {
+    private function _hotness($upvotes, $downvotes, $datePosted) {
         $s = $this->_score($upvotes, $downvotes);
         $order = log(max(abs($s), 1), 10);
         
@@ -32,7 +33,7 @@ class hotRanking{
             $sign = 0;
         }
         
-        $seconds = $posted - 1134028003;
+        $seconds = $datePosted - 1134028003;
         
         return round($order + (($sign * $seconds)/45000), 7);
     }
@@ -41,12 +42,12 @@ class hotRanking{
      * public method to calculate a post's hotness
      * 
      * @since   0.1
-     * @param   int $upvotes, int $downvotes, int $posted
+     * @param   int $upvotes, int $downvotes, int $datePosted
      * @access  public
      * @return  float
      */
-    public function hotness($upvotes, $downvotes, $posted) {
-        return $this->_hotness($upvotes, $downvotes, $posted);
+    public function hotness($upvotes, $downvotes, $datePosted) {
+        return $this->_hotness($upvotes, $downvotes, $datePosted);
     }
 }
 ?>
