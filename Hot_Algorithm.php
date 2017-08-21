@@ -36,5 +36,17 @@ class hotRanking{
         
         return round($order + (($sign * $seconds)/45000), 7);
     }
+
+    /**
+     * public method to calculate a post's hotness
+     * 
+     * @since   0.1
+     * @param   int $upvotes, int $downvotes, int $posted
+     * @access  public
+     * @return  float
+     */
+    public function hotness($upvotes, $downvotes, $posted) {
+        return $this->_hotness($upvotes, $downvotes, $posted);
+    }
 }
 ?>
